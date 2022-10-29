@@ -1,5 +1,7 @@
 # Software Development Technologies 2022. Coursework.
 
+[HOME](this_repo) | [COURSEWORK](coursework.md) | [PROJECT STRUCTURE](project_structure.md)
+
 This document contains required information for preparing your thesis and FAQ section.
 
 ## Helpful materials

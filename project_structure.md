@@ -1,5 +1,7 @@
 # Software Development Technologies 2022. Project Structure.
 
+[HOME](this_repo) | [COURSEWORK](coursework.md) | [PROJECT STRUCTURE](project_structure.md)
+
 In order to make your work more organized next format is suggested and strongly asked to follow.
 
 1. After cloning your fork of the discipline repository create a directory for your project:
