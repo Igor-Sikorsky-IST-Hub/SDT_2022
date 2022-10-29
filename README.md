@@ -3,7 +3,7 @@ Repository for assessing labs and coursework from the discipline **"Software Dev
 
 How to work with this repository and assess your assignments:
 
-1. Fork this repository into your account. [Here][this_repo] you need to press **Fork** or arrow near it and then option **Create new fork**.
+1. Fork this repository into your account. [Here][this_repo] you need to press **Fork** or arrow near it and then option **Create new fork**. <br/>
     > *Briefly, **fork** is a full copy of main repository located in your GitHub account, which allows to introduce changes into main repository easily. More information about forks can be found [here][fork_info]*
 
 <br/>
@@ -46,7 +46,7 @@ How to work with this repository and assess your assignments:
         ```cmd
         git add one.txt two.txt three.js
         ```
-        or commit everything:
+        or stage everything:
         ```cmd
         git add .
         ```
