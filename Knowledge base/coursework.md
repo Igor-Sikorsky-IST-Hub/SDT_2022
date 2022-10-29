@@ -8,7 +8,7 @@ This document contains required information for preparing your thesis and FAQ se
 
 ## Helpful materials
 
-- Standard for thesis creation and preparation (styles, sizes, margins, etc.) can be found [here](paperwork_standard)
+- Standard for thesis creation and preparation (styles, sizes, margins, etc.) can be found [here][paperwork_standard]
 
 ## FAQ
 
