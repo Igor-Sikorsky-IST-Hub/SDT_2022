@@ -1,6 +1,6 @@
 # Software Development Technologies 2022
 
-[HOME][this_repo] | [COURSEWORK][coursework_readme] | [PROJECT STRUCTURE][project_structure_readme]
+[HOME][this_repo] | [COURSEWORK][coursework_readme] | [PROJECT STRUCTURE][project_structure_readme] | [ASSESSMENT RESULTS][assessment_results]
 
 Repository for assessing labs and coursework from the discipline **"Software Development Technologies"**
 
@@ -72,7 +72,7 @@ How to work with this repository and assess your assignments:
 
 10. When teacher will have time and will review your PRs, then he will either leave comments or merge PR into `projects` branch. If merged, your first part of the lab is done then all what is left is to answer on theory questions right on the lesson.
 
-
+[assessment_results]: <https://docs.google.com/spreadsheets/d/1ZpV_Tj2757f1ap3UkV767vp3I0I4q5qAhgDPfa6FFVk/edit?usp=sharing>
 [this_repo]: <https://github.com/Igor-Sikorsky-IST-Hub/SDT_2022>
 [coursework_readme]: <Knowledge base/coursework.md>
 [project_structure_readme]: <Knowledge base/project_structure.md>
