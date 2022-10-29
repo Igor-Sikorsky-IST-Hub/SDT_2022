@@ -70,6 +70,6 @@ How to work with this repository and assess your assignments:
 10. When teacher will have time and will review your PRs, then he will either leave comments or merge PR into `projects` branch. If merged, your first part of the lab is done then all what is left is to answer on theory questions right on the lesson.
 
 
-[this_repo]: <https://github.com/ohorielov/linux_labs>
+[this_repo]: <https://github.com/Igor-Sikorsky-IST-Hub/SDT_2022>
 [fork_info]: <https://docs.github.com/en/get-started/quickstart/fork-a-repo>
 [project_str]: <project_structure.md>
