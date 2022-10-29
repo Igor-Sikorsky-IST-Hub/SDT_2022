@@ -1,4 +1,9 @@
 # Software Development Technologies 2022
+
+|   |   |   |
+|-|-|-|
+| [HOME](README.md)  | [COURSEWORK](coursework.md)  | [PROJECT STRUCTURE](project_structure.md)  |
+
 Repository for assessing labs and coursework from the discipline **"Software Development Technologies"**
 
 How to work with this repository and assess your assignments:

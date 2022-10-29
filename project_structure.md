@@ -1,4 +1,4 @@
-# SDT 2022. Project Structure.
+# Software Development Technologies 2022. Project Structure.
 
 In order to make your work more organized next format is suggested and strongly asked to follow.
 

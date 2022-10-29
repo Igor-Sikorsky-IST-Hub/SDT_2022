@@ -1,4 +1,4 @@
-# Software Development Technologies 2022
+# Software Development Technologies 2022. Coursework.
 
 This document contains required information for preparing your thesis and FAQ section.
 
