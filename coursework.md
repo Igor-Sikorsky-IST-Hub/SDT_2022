@@ -1,6 +1,6 @@
 # Software Development Technologies 2022. Coursework.
 
-[HOME](this_repo) | [COURSEWORK](coursework.md) | [PROJECT STRUCTURE](project_structure.md)
+[HOME][this_repo] | [COURSEWORK](coursework.md) | [PROJECT STRUCTURE](project_structure.md)
 
 This document contains required information for preparing your thesis and FAQ section.
 
@@ -13,3 +13,5 @@ This document contains required information for preparing your thesis and FAQ se
 ## FAQ
 
 To be added...
+
+[this_repo]: <https://github.com/Igor-Sikorsky-IST-Hub/SDT_2022>
