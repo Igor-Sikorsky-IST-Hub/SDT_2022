@@ -17,7 +17,7 @@ This document contains required information for preparing your thesis and FAQ se
 To be added...
 
 [this_repo]: <https://github.com/Igor-Sikorsky-IST-Hub/SDT_2022>
-[coursework_readme]: <Knowledge base/coursework.md>
-[project_structure_readme]: <Knowledge base/project_structure.md>
-[coursework_readme_ua]: <Knowledge base/coursework.ua.md>
-[project_structure_readme_ua]: <Knowledge base/project_structure.ua.md>
+[coursework_readme]: <coursework.md>
+[project_structure_readme]: <project_structure.md>
+[coursework_readme_ua]: <coursework.ua.md>
+[project_structure_readme_ua]: <project_structure.ua.md>
