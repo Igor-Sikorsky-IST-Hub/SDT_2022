@@ -10,14 +10,12 @@
 
 - Стандард кафедри для оформлення документів під час навчального процесу можна знайти [тут](paperwork_standard)
 
-[paperwork_standard]: <.\Knowledge base\Coursework\Department standard for document preparation in studying process.pdf>
-
 ## Часті запитання/відповіді (FAQ)
 
 В розробці...
 
 [this_repo]: <https://github.com/Igor-Sikorsky-IST-Hub/SDT_2022>
-[paperwork_standard]: <.\Coursework\Department standard for document preparation in studying process.pdf>
+[paperwork_standard]: <Coursework\Department standard for document preparation in studying process.pdf>
 [coursework_readme]: <coursework.md>
 [project_structure_readme]: <project_structure.md>
 [coursework_readme_ua]: <coursework.ua.md>
