@@ -1,6 +1,8 @@
 # Software Development Technologies 2022. Project Structure.
 
-[HOME][this_repo] | [COURSEWORK](coursework.md) | [PROJECT STRUCTURE](project_structure.md)
+[УКР][project_structure_readme_ua] | [ENG][project_structure_readme]
+
+[HOME][this_repo] | [COURSEWORK][coursework_readme] | [PROJECT STRUCTURE][project_structure_readme]
 
 In order to make your work more organized next format is suggested and strongly asked to follow.
 
@@ -78,3 +80,7 @@ mkdir "02", "03", "04", "05", "06", "07", "08", "09"
 **ATTENTION**: in the script above replace placeholders `XX` and `Surname_Name` with your data!
 
 [this_repo]: <https://github.com/Igor-Sikorsky-IST-Hub/SDT_2022>
+[coursework_readme]: <Knowledge base/coursework.md>
+[project_structure_readme]: <Knowledge base/project_structure.md>
+[coursework_readme_ua]: <Knowledge base/coursework.ua.md>
+[project_structure_readme_ua]: <Knowledge base/project_structure.ua.md>

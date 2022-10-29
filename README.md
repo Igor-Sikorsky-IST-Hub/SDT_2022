@@ -1,6 +1,6 @@
 # Software Development Technologies 2022
 
-[HOME][this_repo] | [COURSEWORK](coursework.md) | [PROJECT STRUCTURE](project_structure.md)
+[HOME][this_repo] | [COURSEWORK][coursework_readme] | [PROJECT STRUCTURE][project_structure_readme]
 
 Repository for assessing labs and coursework from the discipline **"Software Development Technologies"**
 
@@ -22,11 +22,11 @@ How to work with this repository and assess your assignments:
 
 <br/>
 
-3. Prepare [project structure](project_str)
+3. Prepare [project structure][project_structure_readme]
 
 <br/>
 
-4. For each LAB create a subdirectory in `reports` directory. See [project structure](project_str) for detailed instructions.
+4. For each LAB create a subdirectory in `reports` directory. See [project structure][project_structure_readme] for detailed instructions.
 
 <br/>
 
@@ -74,5 +74,6 @@ How to work with this repository and assess your assignments:
 
 
 [this_repo]: <https://github.com/Igor-Sikorsky-IST-Hub/SDT_2022>
+[coursework_readme]: <Knowledge base/coursework.md>
+[project_structure_readme]: <Knowledge base/project_structure.md>
 [fork_info]: <https://docs.github.com/en/get-started/quickstart/fork-a-repo>
-[project_str]: <project_structure.md>
