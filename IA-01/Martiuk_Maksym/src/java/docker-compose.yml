@@ -1,0 +1,67 @@
+version: '3'
+
+services:
+
+  minio:
+    image: minio/minio:latest
+    command: server --console-address ":9001" /data/
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: makstrexa
+      MINIO_ROOT_PASSWORD: makstrexa123
+    volumes:
+      - minio-storage:/data
+
+  createbuckets:
+    image: minio/mc
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      /usr/bin/mc alias set myminio http://minio:9000 makstrexa makstrexa123;
+      /usr/bin/mc mb myminio/hair-salon-app;
+      /usr/bin/mc policy set public myminio/hair-salon-app;
+      exit 0;
+      "
+
+  postgres:
+    image: 'postgres'
+    ports:
+      - '8026:5432'
+    container_name: 'java-postgres'
+    environment:
+      - 'POSTGRES_USER=postgres'
+      - 'POSTGRES_PASSWORD=postgres'
+      - 'POSTGRES_DB=hairdressing_salon'
+
+  hairsalon:
+    depends_on:
+      - smtp-server
+      - minio
+      - createbuckets
+      - postgres
+    build: ./
+    container_name: 'hairsalon'
+    ports:
+      - '8028:8028'
+    environment:
+      DB_HOST: java-postgres
+      DB_PORT: 5432
+      DB_SCHEMA: hairdressing_salon
+      MINIO_ENDPOINT: http://minio:9000
+      MINIO_ROOT_USER: makstrexa
+      MINIO_ROOT_PASSWORD: makstrexa123
+      MINIO_BUCKET_NAME: hair-salon-app
+
+  smtp-server:
+    container_name: mailhog
+    image: mailhog/mailhog
+    restart: on-failure
+    ports:
+      - "2525:1025"
+      - "8085:8025"
+
+volumes:
+  minio-storage:
