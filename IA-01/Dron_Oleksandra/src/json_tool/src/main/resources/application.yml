@@ -1,0 +1,29 @@
+server:
+  port: 8090
+
+spring:
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/json_tool?stringtype=unspecified
+    username: postgres
+    password: password
+
+  jackson:
+    serialization:
+      indent_output: true
+
+springdoc:
+  swagger-ui:
+    operationsSorter: method
+    tagsSorter: alpha
+
