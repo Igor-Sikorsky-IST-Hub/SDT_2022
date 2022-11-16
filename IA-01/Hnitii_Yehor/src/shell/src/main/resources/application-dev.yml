@@ -1,0 +1,5 @@
+db:
+  host: localhost:5432
+  database: shell
+  username: postgres
+  password: 2222
