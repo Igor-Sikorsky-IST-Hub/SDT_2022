@@ -4,19 +4,30 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.*;
 import com.example.hairsalon.exception.ResourceNotFoundException;
 import com.example.hairsalon.exception.ResourceWriteException;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
-@RequiredArgsConstructor
+import static java.util.Objects.isNull;
+
 public class ObjectStorageServiceImpl implements ObjectStorageService {
 
+    private static ObjectStorageServiceImpl instance;
+
     private final AmazonS3 s3Client;
+
+    private ObjectStorageServiceImpl(AmazonS3 amazonS3) {
+        this.s3Client = amazonS3;
+    }
+
+    public static ObjectStorageServiceImpl getInstance(AmazonS3 s3Client) {
+        if (isNull(instance)) {
+            instance = new ObjectStorageServiceImpl(s3Client);
+        }
+        return instance;
+    }
 
     @Override
     public boolean isBucketExisting(String bucketName) {
