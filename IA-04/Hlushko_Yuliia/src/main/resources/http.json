@@ -1,0 +1,7 @@
+{
+  "port": 8080,
+  "webroot": "/tmp",
+  "directory":"src/main/resources/files",
+  "statisticDirectoryPath": "src/main/resources/statistic.json",
+  "countOfRequestsToSaveData": 5
+}
