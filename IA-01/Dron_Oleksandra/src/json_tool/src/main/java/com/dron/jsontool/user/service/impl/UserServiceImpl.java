@@ -11,6 +11,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.UUID;
 
 import static lombok.AccessLevel.PRIVATE;
@@ -49,4 +50,9 @@ public class UserServiceImpl implements UserService {
 				.findByEmail(email)
 				.orElseThrow(() -> new NotFoundException("User not found by email"));
 	}
+
+    @Override
+    public List<User> findAll() {
+		return userRepository.findAll();
+    }
 }

@@ -2,6 +2,7 @@ package com.dron.jsontool.user.controller.facade;
 
 import com.dron.jsontool.user.controller.dto.UserDto;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface UserFacade {
@@ -11,5 +12,9 @@ public interface UserFacade {
 	UserDto save(UserDto userDto);
 
 	UserDto findByEmail(String email);
+
+    List<UserDto> findAll();
+
+	UserDto getAuthUser();
 
 }
