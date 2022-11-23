@@ -1,4 +1,6 @@
-<div hidden>
+- name: Generate Plantuml
+  uses: grassedge/generate-plantuml-action@v1.5
+
 @startuml usecase
 
 left to right direction
@@ -24,8 +26,5 @@ gt --> (Sign up)
 
 @enduml
 
-</div>
 
-![][def]
 
-[def]: usecase.png
