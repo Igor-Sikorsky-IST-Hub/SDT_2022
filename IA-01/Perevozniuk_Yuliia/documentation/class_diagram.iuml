@@ -1,0 +1,103 @@
+@startuml classDiag
+left to right direction
+
+class User {
+ -id: int
+ -username: String
+ -password: String
+ -email: String
+ -maps: Set<MindMap>
+ --
+ +User()
+ +User(String, String, String)
+ --
+ +equals(Object)
+ +hashcode()
+ +getId()
+ +getUsername() 
+ +setUsername(String username) 
+ +getPassword() 
+ +setPassword(String password) 
+ +getEmail() 
+ +setEmail(String email) 
+}
+
+class MindMap {
+ -id: int
+ -title: String
+ -description: String
+ -category: String
+ -state: String
+ -user: User
+ -blocks: Set<Block>
+ --
+ +MindMap()
+ +MindMap(String, String, String, User)
+ --
+ +equals(Object)
+ +hashcode()
+ +getId()
+ +getTitle() 
+ +setTitle(String title) 
+ +getDescription() 
+ +setDescription(String description) 
+ +getCategory()
+ +setCategory(String category)
+ +getState()
+ +setState(String state)
+ +getUser()
+ +getBlocks()
+}
+
+
+class Block {
+ -id: int
+ -title: String
+ -color: String
+ -fileUrl: String
+ -mindMap: MindMap
+ --
+ +Block()
+ +Block(String, String, String, MindMap)
+ --
+ +equals(Object)
+ +hashcode()
+ +getId()
+ +getTitle() 
+ +setTitle(String title) 
+ +getColor() 
+ +setColor(String username) 
+ +getFileUrl() 
+ +setFileUrl(String password) 
+ +getMindMap() 
+ 
+}
+
+class Lines {
+ -id: int
+ -next: Block 
+ -previous: Block
+ --
+ +Lines()
+ +Blocks(Block, Block)
+ --
+ +equals(Object)
+ +hashcode()
+ +getId()
+ +getPrevious()
+ +getNext()
+ 
+}
+
+
+User ..> MindMap
+MindMap ..> User
+User "1" *-- "*" MindMap
+MindMap ..> Block
+Block ..> MindMap
+MindMap "1" *-- "*" Block
+Lines ..> Block
+Lines  *--  Block
+
+
+@enduml 
