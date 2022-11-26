@@ -22,14 +22,14 @@ def audible_scraper(URL):
     books_data = soup.find_all('li', class_='bc-list-item productListItem')
     df = pd.DataFrame(
         {
-            "Book_Name": get_book_names(books_data),
-            "Description": get_description(books_data),
-            "Author": get_author(books_data),
-            "Rating": get_rating(books_data),
-            "Num_of_Ratings": get_nunber_of_ratings(books_data),
-            "Regular_Price": get_regular_price(books_data),
-            "Audio_Length": get_book_length(books_data),
-            "Language": get_language(books_data)
+            "title": get_book_names(books_data),
+            "description": get_description(books_data),
+            "author": get_author(books_data),
+            "rating": get_rating(books_data),
+            "rating_count": get_nunber_of_ratings(books_data),
+            "reg_price": get_regular_price(books_data),
+            "audio_len": get_book_length(books_data),
+            "language": get_language(books_data)
         })
 
     # part that scrapes category or your search results for author or book
