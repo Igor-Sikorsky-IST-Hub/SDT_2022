@@ -33,7 +33,7 @@ def audible_scraper(URL):
         })
 
     # part that scrapes category or your search results for author or book
-    # maybe append 'Category' col ot df
+    # maybe append 'Category' col to df
     pass
 
     return df
