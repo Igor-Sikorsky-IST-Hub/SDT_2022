@@ -1,5 +1,6 @@
 package com.dron.jsontool.user.controller.facade;
 
+import com.dron.jsontool.user.controller.dto.AuthDto;
 import com.dron.jsontool.user.controller.dto.UserDto;
 
 import java.util.List;
@@ -16,5 +17,7 @@ public interface UserFacade {
     List<UserDto> findAll();
 
 	UserDto getAuthUser();
+
+	UserDto auth(AuthDto authDto);
 
 }

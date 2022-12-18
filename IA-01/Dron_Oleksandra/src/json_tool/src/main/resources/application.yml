@@ -1,5 +1,5 @@
 server:
-  port: 8090
+  port: 8091
 
 spring:
 
@@ -10,13 +10,12 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: true
 
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/json_tool?stringtype=unspecified
-    username: postgres
-    password: password
+    url: jdbc:postgresql://${DATABASE_HOST}/${DATABASE_NAME}?stringtype=unspecified
+    username: ${DATABASE_USER}
+    password: ${DATABASE_PASSWORD}
 
   jackson:
     serialization:

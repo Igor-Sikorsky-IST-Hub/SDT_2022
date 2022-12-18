@@ -10,9 +10,9 @@ import org.mapstruct.Mapping;
 public interface UserMapper {
 
 	@Mapping(target = "password", ignore = true)
-	@Mapping(target = "jsonSchemas", source = "jsonSchemas", qualifiedByName = "toDtoWithoutEntities")
 	UserDto toDto(User user);
 
+	@Mapping(target = "role", constant = "ROLE_USER")
 	User toEntity(UserDto user);
 
 }

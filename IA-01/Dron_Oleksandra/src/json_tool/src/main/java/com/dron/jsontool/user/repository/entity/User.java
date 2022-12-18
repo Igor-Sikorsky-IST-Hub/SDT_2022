@@ -1,13 +1,12 @@
 package com.dron.jsontool.user.repository.entity;
 
-import com.dron.jsontool.common.entity.BaseEntity;
+import com.dron.jsontool.config.entity.BaseEntity;
 import com.dron.jsontool.jsonshema.repositiry.entity.JsonSchema;
+import com.dron.jsontool.user.repository.entity.enumeration.Role;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -36,14 +35,8 @@ public class User extends BaseEntity {
 	List<JsonSchema> jsonSchemas;
 
 	@Builder.Default
+	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
-	String roles = "";
-
-	public List<String> getRoleList() {
-		if (this.roles.length() > 0) {
-			return Arrays.asList(this.roles.split(","));
-		}
-		return new ArrayList<>();
-	}
+	Role role = Role.ROLE_USER;
 
 }

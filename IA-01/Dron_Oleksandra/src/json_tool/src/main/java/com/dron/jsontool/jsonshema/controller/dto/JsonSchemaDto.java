@@ -1,7 +1,6 @@
 package com.dron.jsontool.jsonshema.controller.dto;
 
-import com.dron.jsontool.jsonhistory.controller.dto.JsonHistoryDto;
-import com.dron.jsontool.user.controller.dto.UserDto;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,8 +8,10 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
+import static com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY;
 import static lombok.AccessLevel.PRIVATE;
 
 @Getter
@@ -20,17 +21,20 @@ import static lombok.AccessLevel.PRIVATE;
 @Builder
 public class JsonSchemaDto {
 
+	@JsonProperty(access = READ_ONLY)
+	UUID id;
+
 	@NotBlank
 	String json;
 
 	@NotBlank
-	String name;
+	String title;
 
-	@NotNull
-	UserDto owner;
+	String description;
 
-	JsonHistoryDto previousHistory;
+	UUID previousId;
 
-	JsonHistoryDto currentHistory;
+	@Builder.Default
+	LocalDateTime createdDate = LocalDateTime.now();
 
 }
