@@ -1,0 +1,46 @@
+version: "3"
+
+services:
+
+  jsontool:
+    image: postgres:13.3
+    container_name: jsontool
+    restart: always
+    ports:
+      - "5451:5432"
+    environment:
+      - POSTGRES_PASSWORD=jsontool
+      - POSTGRES_USER=jsontool
+      - POSTGRES_DB=jsontool
+    networks:
+      - main
+
+  jsontool-backend:
+    ports:
+      - "8091:8091"
+    build:
+      context: ./src/json_tool
+      dockerfile: Dockerfile
+    environment:
+      - DB_URL=jdbc:postgresql://jsontool:5432/jsontool
+      - DATABASE_HOST=jsontool
+      - DATABASE_NAME=jsontool
+      - DATABASE_USER=jsontool
+      - DATABASE_PASSWORD=jsontool
+    depends_on:
+      - jsontool
+    networks:
+      - main
+  
+  jsontool-frontend:
+    ports:
+      - "4200:80"
+    build:
+      context: ./src/json_tool_angular
+      dockerfile: Dockerfile
+    networks:
+      - main
+
+networks:
+  main:
+    driver: bridge
