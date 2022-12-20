@@ -1,0 +1,7 @@
+{"port":8080,
+  "webroot": "0.0.0.0",
+  "directory":"p2pClient/src/main/resources/files/",
+  "statisticDirectoryPath":"p2pClient/src/main/resources/statistic.json",
+  "pathToSourceFileSavingDirectory":"p2pClient/src/main/resources/compiledJSPPages",
+  "p2pSearcherServerPort": 9000
+ }
