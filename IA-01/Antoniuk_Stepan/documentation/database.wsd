@@ -1,0 +1,36 @@
+@startuml database
+left to right direction
+
+hide circle
+skinparam linetype ortho
+
+entity "books" as books {
+  *id : INT <<generated>>
+  --
+  * title: VARCHAR(255)
+  description: VARCHAR(255)
+  * author: VARCHAR(255) 
+  rating: VARCHAR(31)
+  rating_count: VARCHAR(15)
+  reg_price: VARCHAR(15)
+  audio_len: VARCHAR(31)
+  language: VARCHAR(31)
+}
+
+entity "wish_lists" as wls {
+    * id : INT <<generated>>
+    --
+    * wl_name: VARCHAR(255)
+}
+
+entity "add_book_to_wl" as add {
+    *id : INT <<generated>>
+    -- 
+    * book_id: INT <<FK>>
+    * wl_id: INT <<FK>>
+}
+
+books ||..o{ add
+wls ||..o{ add
+
+@enduml

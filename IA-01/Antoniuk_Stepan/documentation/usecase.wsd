@@ -1,0 +1,11 @@
+@startuml usecase
+
+left to right direction
+actor "User" as user
+
+user --> (Check book availability by its name)
+user --> (Choose webpage for scraping)
+user --> (See a list of books and their chars)
+user --> (Start the scraping process) 
+
+@enduml

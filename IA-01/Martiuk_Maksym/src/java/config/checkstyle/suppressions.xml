@@ -1,0 +1,12 @@
+<!DOCTYPE suppressions PUBLIC
+        "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+        "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+
+<suppressions>
+    <suppress files="[\\/]generated[\\/]" checks="[a-zA-Z0-9]*"/>
+    <suppress files="[\\/]test[\\/]" checks="MagicNumber"/>
+    <suppress files="[\\/]test[\\/]" checks="FileLength"/>
+    <suppress files="PostgresqlContainer\.java" checks="HideUtilityClassConstructor"/>
+    <suppress files="IntegrationTestBase\.java" checks="HideUtilityClassConstructor"/>
+    <suppress files="HairSalonApplication\.java" checks="HideUtilityClassConstructor"/>
+</suppressions>

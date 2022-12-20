@@ -1,0 +1,28 @@
+server:
+  port: 8091
+
+spring:
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${DATABASE_HOST}/${DATABASE_NAME}?stringtype=unspecified
+    username: ${DATABASE_USER}
+    password: ${DATABASE_PASSWORD}
+
+  jackson:
+    serialization:
+      indent_output: true
+
+springdoc:
+  swagger-ui:
+    operationsSorter: method
+    tagsSorter: alpha
+

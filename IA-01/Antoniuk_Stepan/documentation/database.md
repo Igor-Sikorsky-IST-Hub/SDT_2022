@@ -1,0 +1,1 @@
+![database](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/SanAntonik/SDT_2022/01-02_Antoniuk_Stepan/IA-01/Antoniuk_Stepan/documentation/database.wsd)
