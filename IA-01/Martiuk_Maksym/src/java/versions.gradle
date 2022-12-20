@@ -1,0 +1,14 @@
+ext {
+    versions = [
+            'flywayCore' : '8.4.3',
+            'postgresql' : '42.3.1',
+            'lombok' : '1.18.22',
+            'springfox' : '3.0.0',
+            'testContainers' : '1.16.3',
+            'awsJavaSDK' : '1.12.184',
+            'guava' : '31.1-jre',
+            'hutool' : '5.7.22',
+            'greenmail' : '1.6.8',
+            'security' : '5.6.1'
+    ]
+}

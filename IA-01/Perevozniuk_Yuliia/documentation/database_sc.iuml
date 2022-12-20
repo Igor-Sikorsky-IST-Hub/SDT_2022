@@ -1,0 +1,48 @@
+@startuml database
+left to right direction
+
+hide circle
+skinparam linetype ortho
+
+entity "Users" as us {
+  *id : INT <<generated>>
+  --
+  * username: VARCHAR(255)
+  * password: VARCHAR(255)
+  email: VARCHAR(255)
+}
+
+
+entity "Map" as mp {
+  *id : INT <<generated>>
+  --
+ *title : VARCHAR(255)
+   userId: INT <<FK>>
+   description : TEXT
+   category: VARCHAR(255)
+   current_state: VARCHAR(255)
+}
+
+entity "Blocks" as bl {
+  *id : INT <<generated>>
+  --
+  mapID : INT <<FK>>
+  title: VARCHAR(255)
+  fileurl: VARCHAR(255)
+  color: VARCHAR(255)
+}
+
+entity "Lines" as ln {
+  *id : INT <<generated>>
+  --
+  previousId : INT <<FK>>
+  nextId : INT <<FK>>
+ 
+}
+
+us ||..o{ mp
+mp ||..o{ bl
+bl ||..o{ ln
+bl ||..o{ ln
+
+@enduml
