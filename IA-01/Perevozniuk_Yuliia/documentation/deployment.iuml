@@ -1,0 +1,31 @@
+@startuml deployment_dg
+
+
+<style>
+componentDiagram {
+  BackGroundColor white
+  LineThickness 1
+  LineColor black
+}
+
+</style>
+ 
+skinparam linetype ortho
+
+node "Graphic user interface" as n1
+
+node "Web server" as n2{
+    agent "Controller"
+    agent "Repository"
+    agent "Service"
+
+}
+node "DataBase" as n3{
+  database MySQLDataBase
+}
+
+
+n1 ---> n2: HTTPS
+n2 --> n3
+
+@enduml
