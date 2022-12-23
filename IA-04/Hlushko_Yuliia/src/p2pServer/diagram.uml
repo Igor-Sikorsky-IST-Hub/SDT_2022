@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="-85.0" y="-1.25">org.example.server.ServerConnectionListener</node>
+    <node x="-77.5" y="189.0">org.example.network.HTTPConnection</node>
+    <node x="-65.0" y="-134.0">org.example.network.ConnectionListener</node>
+    <node x="-269.0" y="149.5">org.example.server.Server</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.example.network.HTTPConnection" target="org.example.network.HTTPConnection" relationship="DEPENDENCY">
+      <point x="77.5" y="-0.0" />
+      <point x="133.5" y="203.5" />
+      <point x="133.5" y="203.5" />
+      <point x="77.5" y="-0.0" />
+    </edge>
+    <edge source="org.example.network.ConnectionListener" target="org.example.network.HTTPConnection" relationship="DEPENDENCY">
+      <point x="15.0" y="14.5" />
+      <point x="35.0" y="35.0" />
+      <point x="102.5" y="35.0" />
+      <point x="102.5" y="6.5" />
+      <point x="133.5" y="6.5" />
+      <point x="133.5" y="203.5" />
+      <point x="77.5" y="-0.0" />
+    </edge>
+    <edge source="org.example.server.Server" target="org.example.network.ConnectionListener" relationship="TO_ONE">
+      <point x="-0.0" y="-14.5" />
+      <point x="-224.0" y="108.0" />
+      <point x="-62.5" y="108.0" />
+      <point x="-62.5" y="139.0" />
+      <point x="-133.5" y="139.0" />
+      <point x="-133.5" y="-119.5" />
+      <point x="-85.0" y="-0.0" />
+    </edge>
+    <edge source="org.example.server.Server" target="org.example.network.HTTPConnection" relationship="CREATE">
+      <point x="-0.0" y="14.5" />
+      <point x="-224.0" y="174.75" />
+      <point x="0.0" y="174.75" />
+      <point x="-0.0" y="-14.5" />
+    </edge>
+    <edge source="org.example.network.HTTPConnection" target="org.example.network.ConnectionListener" relationship="TO_ONE">
+      <point x="62.5" y="-14.5" />
+      <point x="62.5" y="108.0" />
+      <point x="-62.5" y="108.0" />
+      <point x="-62.5" y="139.0" />
+      <point x="-133.5" y="139.0" />
+      <point x="-133.5" y="-119.5" />
+      <point x="-85.0" y="-0.0" />
+    </edge>
+    <edge source="org.example.server.Server" target="org.example.server.Server" relationship="CREATE">
+      <point x="45.0" y="-0.0" />
+      <point x="-75.5" y="164.0" />
+      <point x="-75.5" y="253.5" />
+      <point x="-372.5" y="253.5" />
+      <point x="-372.5" y="172.0" />
+      <point x="-45.0" y="8.0" />
+    </edge>
+    <edge source="org.example.server.ServerConnectionListener" target="org.example.server.ServerConnectionListener" relationship="DEPENDENCY">
+      <point x="-15.0" y="-14.5" />
+      <point x="5.0" y="-23.25" />
+      <point x="-143.5" y="-23.25" />
+      <point x="-143.5" y="13.25" />
+      <point x="-105.0" y="-0.0" />
+    </edge>
+    <edge source="org.example.server.ServerConnectionListener" target="org.example.network.ConnectionListener" relationship="REALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="20.0" y="35.5" />
+      <point x="20.0" y="35.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="org.example.server.Server" target="org.example.server.ServerConnectionListener" relationship="CREATE">
+      <point x="15.0" y="-14.5" />
+      <point x="-209.0" y="108.75" />
+      <point x="35.0" y="108.75" />
+      <point x="15.0" y="14.5" />
+    </edge>
+    <edge source="org.example.server.ServerConnectionListener" target="org.example.network.HTTPConnection" relationship="TO_MANY">
+      <point x="-95.0" y="14.5" />
+      <point x="-75.0" y="115.625" />
+      <point x="-77.5" y="115.625" />
+      <point x="-77.5" y="-0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="1.0" showDependencies="true" x="291.5" y="114.5" />
+  <SelectedNodes>
+    <node>org.example.server.Server</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
