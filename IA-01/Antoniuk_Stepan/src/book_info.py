@@ -106,3 +106,7 @@ def get_regular_price(data):
 # probably requires login, so put off for now
 def get_member_price(data):
     pass
+
+
+def get_URL(data):
+    pass
