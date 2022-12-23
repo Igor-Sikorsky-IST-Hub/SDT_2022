@@ -1,0 +1,10 @@
+@startuml
+'https://plantuml.com/deployment-diagram
+node "User PC" <<device>> as pc{
+ artifact "DownloadManager" <<artifact>>
+}
+node "Database Server" <<device>> as dbs {
+ database "MySQL"
+}
+pc -- dbs : "  JDBC"
+@enduml

@@ -1,0 +1,39 @@
+@startuml sequence
+actor User
+
+participant ":GUI" as gui
+participant ":WEB-server" as web
+participant ":DB" as db
+
+
+User -> gui : go to the main page
+activate gui
+gui -> User : the main page displaying
+
+gui -> web: HTTP request
+
+activate web
+web -> gui: HTTP request
+gui -> web: login
+
+web -> db: request data from DB
+activate db
+
+db->db: check users
+db-> web : db find user
+web->gui : response shows created mindmaps of user
+db -->db 
+db --> web : db does't find user
+web --> gui: response is error and registration form
+
+gui -> web : create a new mindmap
+web-> db: request add//update to DB
+db->db : BD creates/updates mindmaps
+db->web : response with new list of mindmaps
+web ->gui : response shows updated list of mindmaps
+
+
+
+
+
+@enduml

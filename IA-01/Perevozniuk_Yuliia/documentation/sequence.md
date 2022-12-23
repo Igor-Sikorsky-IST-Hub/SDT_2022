@@ -1,0 +1,1 @@
+![classDiag](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/July58/SDT_2022/01-03_Perevozniuk_Yuliia/IA-01/Perevozniuk_Yuliia/documentation/sequence.iuml)

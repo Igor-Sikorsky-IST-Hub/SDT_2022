@@ -1,0 +1,56 @@
+plugins {
+    id 'org.springframework.boot' version '2.6.3'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id 'jacoco'
+    id 'checkstyle'
+}
+
+apply from: './versions.gradle'
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation "io.springfox:springfox-boot-starter:${versions.springfox}"
+
+    implementation "org.flywaydb:flyway-core:${versions.flywayCore}"
+    implementation "org.postgresql:postgresql:${versions.postgresql}"
+
+    implementation "com.amazonaws:aws-java-sdk:${versions.awsJavaSDK}"
+    implementation "cn.hutool:hutool-all:${versions.hutool}"
+    implementation "com.google.guava:guava:${versions.guava}"
+
+    compileOnly "org.projectlombok:lombok:${versions.lombok}"
+    annotationProcessor 'org.projectlombok:lombok'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    testImplementation "org.testcontainers:junit-jupiter:${versions.testContainers}"
+    testImplementation "org.testcontainers:postgresql:${versions.testContainers}"
+    testImplementation "com.icegreen:greenmail-junit5:${versions.greenmail}"
+    testImplementation "org.springframework.security:spring-security-test:${versions.security}"
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+

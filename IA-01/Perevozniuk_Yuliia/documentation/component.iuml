@@ -1,0 +1,24 @@
+@startuml component
+
+
+skinparam BackgroundColor transparent
+
+component "User" as us
+
+rectangle "MindMap server" as mp {
+   portin " " as p
+   component MindMapManagment [
+    "MindMapManagmentProcessor"
+    ]
+   component "DataBaseAccess" as comp2
+   portout " " as p2
+   
+}
+component "DataBase server" as db
+us -(0-  p  : "" mindmap managment ""
+p -[dotted]-> MindMapManagment
+MindMapManagment -(0-  comp2 
+comp2 --[plain]> p2
+p2 --(0-  db
+
+@enduml

@@ -1,0 +1,29 @@
+<div class="row" style="height: 70%;">
+
+  <div class="col-6 h-100" style="height:100%">
+    <textarea [(ngModel)]="data" style="max-height:100%;min-height:100%" class="w-100 p-3"></textarea>
+    <mat-error class="alert">{{error}}</mat-error>
+    <br>
+    <button class="btn btn-warning m-2" (click)="prettifyData()">Prettify</button>
+    <button class="btn btn-warning m-2" [cdkCopyToClipboard]="data">Copy</button>
+  </div>
+
+  <div class="col-6 h-100 border">
+    <pre style="max-height:100%;min-height:100%" class="p-3" [highlight]="prettifyJson(this.isJsonMode)"
+         [languages]="['json']">
+    </pre>
+    <mat-radio-group (change)="changeMod($event)" aria-label="Select an option" class="bg-warning p-2 m-2 rounded-2">
+      <mat-radio-button [checked]="isJsonMode" [value]="true">JSON</mat-radio-button>
+      <mat-radio-button [checked]="!isJsonMode" [value]="false">Flatten</mat-radio-button>
+    </mat-radio-group>
+    <button class="btn btn-warning m-2" [cdkCopyToClipboard]="prettifyJson(this.isJsonMode)">Copy</button>
+    <button class="btn btn-warning m-2" (click)="exportAsMD()">Export as MD</button>
+    <button class="btn btn-warning m-2" (click)="saveSchema()">Save schema</button>
+    <button class="btn btn-warning m-2" (click)="findPrev()">
+      <mat-icon>undo</mat-icon>
+    </button>
+    <button class="btn btn-warning m-2" (click)="findNext()">
+      <mat-icon>redo</mat-icon>
+    </button>
+  </div>
+</div>
