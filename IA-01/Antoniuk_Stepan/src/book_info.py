@@ -98,6 +98,12 @@ def get_regular_price(data):
                 'span', class_='bc-text bc-size-base bc-color-base')
             price = price_tag[1].text.strip()
             regular_price.append(price)
+        except IndexError:
+            # Handle book on Daily Deal price
+            price_tag = buy_tag.find_all(
+                'span', class_='bc-text bc-size-small bc-color-secondary bc-text-strike')
+            price = price_tag[0].text.strip()
+            regular_price.append(price)
         except AttributeError:
             regular_price.append(None)
     return regular_price
