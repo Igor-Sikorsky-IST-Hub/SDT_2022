@@ -2,6 +2,8 @@ import streamlit as st
 
 from scraping import audible_scraper
 
+st.title("Audible Web Scraper")
+
 
 # is it possible to do this '@' operation in scraping.py?
 @st.cache(suppress_st_warning=True)
@@ -9,9 +11,8 @@ def get_df(URL):
     return audible_scraper(URL)
 
 
-def show_page():
-    # Add sidebar somewhere around here
-    st.title("Audible Web Scraper")
+def show_scrape_page():
+    st.write("### Scrape webpage")
     URL = st.text_input("Paste URL to scrape here:",
                         placeholder="You haven't pasted any URL yet")
     if len(URL) > 1:
@@ -22,17 +23,25 @@ def show_page():
         st.write("#### Resulting df")
         st.dataframe(df)
 
-        # Button to select rows (books) for wish list
-        select_books_for_wish_list = st.button("Select books for your wish list")
-        if select_books_for_wish_list:
-            # Unfortunately, streamlit df doesn't let you select rows and add
-            # them to another df. However, there exists a workaround of this issue:
-            # https://gist.github.com/treuille/e8f07ebcd92265a68ecec585f7594918
-            selected_indices = st.multiselect('Select rows:', df.index)
-            selected_rows = df.loc[selected_indices]
-            st.write('#### Selected Rows', selected_rows)
-            # Maybe button to append rows to wish list table?
-            pass
+        # # DOESN'T WORK YET
+        # # Maybe to a seperate func because it's gonna be used here and in all_books_page?
+        # # With button, it doesn't let me select more than one row. Maybe form or checkbox?
+        # # Button to select rows (books) for wish list
+        # select_books_for_wish_list = st.button("Select books for your wish list")
+        # if select_books_for_wish_list:
+        #     with st.form("my_form"):
+        #         # Unfortunately, streamlit df doesn't let you select rows and add
+        #         # them to another df. However, there exists a workaround of this issue:
+        #         # https://gist.github.com/treuille/e8f07ebcd92265a68ecec585f7594918
+        #         selected_indices = st.multiselect('Select rows:', df.index)
+        #         selected_rows = df.loc[selected_indices]
+        #         st.write('#### Selected Rows', selected_rows)
+
+        #         submitted = st.form_submit_button("Submit")
+        #         if submitted:
+        #             st.write("#### Selected Rows", selected_rows)
+        #     # Maybe button to append rows to wish list table?
+        #     pass
 
         # Button to Choose whether you want to add this df to DB
         every_df_book_to_DB = st.button("Add every book to DB")
@@ -42,4 +51,4 @@ def show_page():
             pass
 
 
-show_page()
+show_scrape_page()
