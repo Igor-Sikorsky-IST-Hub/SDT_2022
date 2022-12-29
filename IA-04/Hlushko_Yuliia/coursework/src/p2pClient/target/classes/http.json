@@ -1,0 +1,6 @@
+{
+  "webroot": "0.0.0.0",
+  "databaseProperties":"p2pClient/src/main/resources/database.properties",
+  "pathToSourceFileSavingDirectory":"p2pClient/src/main/resources/compiledJSPPages",
+  "directory": "p2pClient/src/main/resources/files/"
+ }
