@@ -1,1 +1,1 @@
-![component](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/piks1317/SDT_2022/01-03_Pidvyshennyi_Volodymyr/IA-01/Pidvyshennyi_Volodymyr/documentation/component.iuml)
+![component](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/piks1317/SDT_2022/01_03_Pidvyshennyi_Volodymyr/IA-01/Pidvyshennyi_Volodymyr/documentation/component.iuml)
