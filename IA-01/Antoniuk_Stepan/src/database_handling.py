@@ -34,28 +34,33 @@ def create_books_table(engine):
     metadata_obj.create_all(engine)
 
 
-# TRUNCATE DOESN'T WORK WITH FOREING KEYS. REQUIRES REWORKING
 # If you load to db straightaway, you can get dublicate values
-# To solve this problem, read everything from your DB table into df,
-# combine with fresh data, remove dublicates,
-# truncate your DB table, and load info back to DB
-# Warning: may be slow with big amount of data
+# To solve the problem, perform left outer join to get rows
+# belonging only to input df. Then drop_dublicates
 def load_to_DB(engine, input_df):
     try:
-        all_info_from_db = pd.read_sql("select * from books;", con=engine, index_col="id")
-        # combine two dfs
-        df_combined = pd.concat([all_info_from_db, input_df])
-        # remove dublicates and reset index
-        df_combined.drop_duplicates(subset=["title", "author", "reg_price", "audio_len", "language"],
-                                    ignore_index=True, inplace=True)
-        # Truncate table 'books'
-        engine.connect().execute("TRUNCATE TABLE books")
+        all_info_from_db = pd.read_sql("select * from books;",
+                                       con=engine, index_col="id")
+        # from https://stackoverflow.com/a/50543455/11749578
+        # Perform left outer join to get rows belonging only
+        # to input df. Then drop_dublicates
+        left_outer_df = pd.merge(input_df, all_info_from_db, how="outer",
+                                 indicator=True
+                                 ).query('_merge=="left_only"')
+        left_outer_df = left_outer_df.reset_index(
+            drop=True).drop(columns=["_merge"])
+        subset = ["title", "author", "reg_price", "audio_len", "language"]
+        left_outer_df.drop_duplicates(subset=subset, keep="first",
+                                      ignore_index=True, inplace=True)
         # load all info to DB
-        df_combined.to_sql(name="books", if_exists='append', con=engine, index=False)
+        left_outer_df.to_sql(name="books", if_exists='append',
+                             con=engine, index=False)
     except ProgrammingError:
-        print("The table doesn't exist. Creating one and adding info to it right now...")
-        create_books_table()
-        input_df.to_sql(name="books", if_exists='append', con=engine, index=False)
+        print("The table 'books' doesn't exist")
+        print("Creating one and adding info to it right now...")
+        create_books_table(engine)
+        input_df.to_sql(name="books", if_exists='append',
+                        con=engine, index=False)
 
 
 def get_every_book_from_DB(engine):
