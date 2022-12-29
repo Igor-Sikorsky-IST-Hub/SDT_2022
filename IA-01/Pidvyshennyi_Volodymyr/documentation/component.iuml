@@ -1,0 +1,6 @@
+@startuml
+'https://plantuml.com/component-diagram
+User - [DownloadManager] : URL
+[DownloadManager] --> [DAO]
+[DAO] --> [DB Server]
+@enduml
