@@ -1,0 +1,8 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+User -> "Download Manager": HttpURL
+"Download Manager" -> "Download Manager" : Uploading a file
+"Download Manager" -> "DB Server" : Download statistics
+"Download Manager" -> User : Show list of downloads
+@enduml
