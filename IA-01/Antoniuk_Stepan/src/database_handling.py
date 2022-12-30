@@ -34,24 +34,34 @@ def create_books_table(engine):
     metadata_obj.create_all(engine)
 
 
-# If you load to db straightaway, you can get dublicate values
-# To solve the problem, perform left outer join to get rows
-# belonging only to input df. Then drop_dublicates
 def load_to_DB(engine, input_df):
     try:
         all_info_from_db = pd.read_sql("select * from books;",
                                        con=engine, index_col="id")
-        # from https://stackoverflow.com/a/50543455/11749578
-        # Perform left outer join to get rows belonging only
-        # to input df. Then drop_dublicates
-        left_outer_df = pd.merge(input_df, all_info_from_db, how="outer",
-                                 indicator=True
+        # since 'rating count' is easily susceptible to change,
+        # put this col into a var and append it to the
+        # resulting df afterwards
+        input_rating_count = input_df["rating_count"]
+        # If you load to db straightaway, you can get dublicate values
+        # To solve the problem, perform left outer join to get rows
+        # belonging only to input df based on
+        # https://stackoverflow.com/a/50543455/11749578
+        # Before merge, drop col 'rating_count' because this col
+        # contains values that often change after each scraping
+        # and thus drop_duplicates func thinks it's an unencountered
+        # before book when in reality it's not
+        left_outer_df = pd.merge(input_df.drop(columns=["rating_count"]),
+                                 all_info_from_db.drop(
+                                     columns=["rating_count"]),
+                                 how="outer", indicator=True
                                  ).query('_merge=="left_only"')
-        left_outer_df = left_outer_df.reset_index(
-            drop=True).drop(columns=["_merge"])
+        left_outer_df = left_outer_df.drop(columns=["_merge"])
         subset = ["title", "author", "reg_price", "audio_len", "language"]
         left_outer_df.drop_duplicates(subset=subset, keep="first",
-                                      ignore_index=True, inplace=True)
+                                      inplace=True)
+        # put the 'rating_count' col back to its place
+        left_outer_df.insert(4, "rating_count", input_rating_count)
+        left_outer_df.reset_index(drop=True, inplace=True)
         # load all info to DB
         left_outer_df.to_sql(name="books", if_exists='append',
                              con=engine, index=False)
@@ -59,6 +69,7 @@ def load_to_DB(engine, input_df):
         print("The table 'books' doesn't exist")
         print("Creating one and adding info to it right now...")
         create_books_table(engine)
+        print("Table created")
         input_df.to_sql(name="books", if_exists='append',
                         con=engine, index=False)
 
