@@ -17,8 +17,15 @@ def show_detailed_book_info_page():
                             placeholder="Insert book ID")
     if book_id.isdigit():
         book_id = int(book_id)
-        try:
-            book_info = df.iloc[book_id]
-            st.write(book_info)
-        except IndexError:
+        if book_id < 1:
             st.write("The book with this ID isn't present in DB")
+            st.write("The book's IDs start with 1")
+        else:
+            try:
+                # need to subract 1 because it shows the book with
+                # incorrect by +1 ID without it
+                book_id -= 1
+                book_info = df.iloc[book_id]
+                st.write(book_info)
+            except IndexError:
+                st.write("The book with this ID isn't present in DB")
