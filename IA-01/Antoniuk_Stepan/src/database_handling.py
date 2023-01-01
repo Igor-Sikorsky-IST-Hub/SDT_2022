@@ -29,7 +29,9 @@ def create_books_table(engine):
         Column("rating_count", String(15)),
         Column("reg_price", String(15)),
         Column("audio_len", String(31)),
-        Column("language", String(31))
+        Column("language", String(31)),
+        Column("page_URL", String(1023)),
+        Column("cover_image_URL", String(1023))
     )
     metadata_obj.create_all(engine)
 

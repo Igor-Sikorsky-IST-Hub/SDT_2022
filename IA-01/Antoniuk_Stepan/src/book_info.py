@@ -81,7 +81,8 @@ def get_nunber_of_ratings(data):
         star_tag = tag.find('li', class_='bc-list-item ratingsLabel')
         try:
             rating_tag = star_tag.find(
-                'span', class_='bc-text bc-size-small bc-color-secondary').text.strip()
+                'span',
+                class_='bc-text bc-size-small bc-color-secondary').text.strip()
             nunber_of_ratings.append(rating_tag)
         except AttributeError:
             nunber_of_ratings.append(None)
@@ -92,7 +93,8 @@ def get_regular_price(data):
     regular_price = []
     for tag in data:
         buy_tag = tag.find(
-            'p', class_='bc-text buybox-regular-price bc-spacing-none bc-spacing-top-none')
+            'p',
+            class_='bc-text buybox-regular-price bc-spacing-none bc-spacing-top-none')
         try:
             price_tag = buy_tag.find_all(
                 'span', class_='bc-text bc-size-base bc-color-base')
@@ -101,7 +103,8 @@ def get_regular_price(data):
         except IndexError:
             # Handle book on Daily Deal price
             price_tag = buy_tag.find_all(
-                'span', class_='bc-text bc-size-small bc-color-secondary bc-text-strike')
+                'span',
+                class_='bc-text bc-size-small bc-color-secondary bc-text-strike')
             price = price_tag[0].text.strip()
             regular_price.append(price)
         except AttributeError:
@@ -114,5 +117,29 @@ def get_member_price(data):
     pass
 
 
-def get_URL(data):
+def get_narrator(data):
     pass
+
+
+def get_cover_image_URL(data):
+    cover_img = []
+    for tag in data:
+        img_tag = tag.find_all(
+            'img', class_='bc-pub-block bc-image-inset-border js-only-element')
+        try:
+            book_image_url = img_tag[0]['src'].strip()
+            cover_img.append(book_image_url)
+        except AttributeError:
+            cover_img.append(None)
+    return cover_img
+
+
+def get_page_URL(data):
+    base_url = 'https://www.audible.com'
+    book_links = []
+    for tag in data:
+        a_tag_name = tag.h3.find_all('a', recursive=False)
+        url = a_tag_name[0]['href'].strip()
+        book_link = base_url+url
+        book_links.append(book_link)
+    return book_links

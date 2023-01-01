@@ -11,6 +11,8 @@ from book_info import get_nunber_of_ratings
 from book_info import get_regular_price
 from book_info import get_book_length
 from book_info import get_language
+from book_info import get_page_URL
+from book_info import get_cover_image_URL
 
 
 def audible_scraper(URL):
@@ -29,7 +31,9 @@ def audible_scraper(URL):
             "rating_count": get_nunber_of_ratings(books_data),
             "reg_price": get_regular_price(books_data),
             "audio_len": get_book_length(books_data),
-            "language": get_language(books_data)
+            "language": get_language(books_data),
+            "page_URL": get_page_URL(books_data),
+            "cover_image_URL": get_cover_image_URL(books_data)
         })
 
     # part that scrapes category or your search results for author or book
