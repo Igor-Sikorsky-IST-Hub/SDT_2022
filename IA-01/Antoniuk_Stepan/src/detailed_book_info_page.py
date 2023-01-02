@@ -27,18 +27,27 @@ def show_detailed_book_info_page():
                 book_id -= 1
                 chosen_book_info = df.iloc[book_id]
 
-                title, description, author, rating = chosen_book_info[:4]
-                rating_count, reg_price, audio_len, language = chosen_book_info[4:]
+                # unpack variables
+                title, description, author,  = chosen_book_info[:3]
+                rating, rating_count, reg_price = chosen_book_info[3:6]
+                audio_len, language, page_url = chosen_book_info[6:9]
+                image_url = chosen_book_info[-1]
 
+                # display book info
                 st.write("")
                 st.write("")
-                st.write(f"##### Title: {title}")
-                st.write(f"##### Description: {description}")
-                st.write(f"##### Author: {author}")
-                st.write(f"##### Rating: {rating}")
-                st.write(f"##### Rating count: {rating_count}")
-                st.write(f"##### Regular price: {reg_price}")
-                st.write(f"##### Audio length: {audio_len}")
-                st.write(f"##### Language: {language}")
+                st.write("")
+                st.image(image_url)
+                st.write(f"###### Title: {title}")
+                st.write(f"###### Description: {description}")
+                st.write(f"###### Author: {author}")
+                st.write(f"###### Rating: {rating}")
+                st.write(f"###### Rating count: {rating_count}")
+                st.write(f"###### Regular price: {reg_price}")
+                st.write(f"###### Audio length: {audio_len}")
+                st.write(f"###### Language: {language}")
+                st.write("")
+                st.write(
+                    f"##### For more info, see [book's page on audible]({page_url})")
             except IndexError:
                 st.write("The book with this ID isn't present in DB")
