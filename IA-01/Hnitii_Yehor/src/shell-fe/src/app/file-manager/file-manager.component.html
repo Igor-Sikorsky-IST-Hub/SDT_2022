@@ -1,0 +1,74 @@
+<mat-drawer-container class="p-4">
+
+  <!-- breadcrumb component -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li *ngFor="let root of getAllPaths()" class="breadcrumb-item">
+            <a class="link" (click)="goToPath(root)">{{getLastPath(root)}}</a>
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="container-fluid w-50">
+      <input type="text" class="form-control" [ngModel]="search" (ngModelChange)="searchFiles($event)"/>
+    </div>
+  </nav>
+
+  <div class="container-fluid" id="main-window">
+    <mat-table #table [dataSource]="files" class="table">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="checked">
+        <mat-header-cell *matHeaderCellDef (click)="uncheckAll()">Check</mat-header-cell>
+        <mat-cell mat-cell *matCellDef="let element">
+          <mat-checkbox [(ngModel)]="element.checked"></mat-checkbox>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="title" class="mat-button-toggle">
+        <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
+        <mat-cell *matCellDef="let file"
+                  (click)="reload(file)">
+          <mat-icon *ngIf="file.folder" style="width:50px; height: 50px;">folder</mat-icon>
+          <div [class]="file.folder?'btn btn-outline-primary btn-sm line-break':'line-break'" [matTooltip]="file.title">
+            {{file.title}}
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+        <mat-cell *matCellDef="let file">
+          <button matRipple class="btn" (click)="delete([file.path])">
+            <mat-icon>delete_sweep</mat-icon>
+          </button>
+          <button matRipple class="btn" (click)="download(file.path)">
+            <mat-icon>save_alt</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"
+               [ngClass]="{hovered: row.hovered, highlighted: row.highlighted}"
+               (click)="row.highlighted = !row.highlighted" (mouseover)="row.hovered = true"
+               (mouseout)="row.hovered = false"></mat-row>
+    </mat-table>
+    <div class="d-flex flex-row">
+      <input class="form-control" type="file"
+             (change)="uploadFile($event)">
+    </div>
+    <div class="d-flex flex-row">
+      <input class="form-control" type="text" minlength="3"
+             (change)="onFolderNameInput($event)">
+      <button matRipple (click)="createFolder()" class="btn btn-success" style="min-width: 20%">
+        Add folder
+      </button>
+    </div>
+  </div>
+
+
+</mat-drawer-container>

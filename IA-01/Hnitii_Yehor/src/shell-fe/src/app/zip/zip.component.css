@@ -1,0 +1,18 @@
+.mat-column-path {
+  flex: 0 0 50%;
+}
+
+.mat-column-filename {
+  flex: 0 0 20%;
+}
+
+.line-break {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.table {
+  overflow-y: scroll;
+  height: 70%;
+  max-width: 100%;
+}
