@@ -35,7 +35,7 @@ def create_books_table(engine):
     metadata_obj.create_all(engine)
 
 
-# POSTPHONED TILL BETTER TIMES
+# POSTPHONED TILL BETTER TIME
 def create_wish_list_table(engine):
     # metadata_obj = MetaData()
     # wish_list = Table(
@@ -86,11 +86,6 @@ def load_to_DB(engine, input_df):
         print("Table created")
         input_df.to_sql(name="books", if_exists='append',
                         con=engine, index=False)
-
-
-def add_books_to_wish_list(engine, input_df):
-    input_df.to_sql(name="wish_lists", if_exists='append',
-                    con=engine, index=False)
 
 
 def get_every_book_from_DB(engine):

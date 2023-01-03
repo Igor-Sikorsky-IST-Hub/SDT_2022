@@ -1,9 +1,9 @@
 import streamlit as st
 import pandas as pd
+from sqlalchemy.exc import IntegrityError
 
 from database_handling import establish_connection
 from database_handling import get_every_book_from_DB
-from database_handling import add_books_to_wish_list
 
 
 def show_all_books_page():
@@ -31,10 +31,31 @@ def show_all_books_page():
         id_list = selected_rows.index.values.tolist()
         indexes = pd.DataFrame({"book_id": id_list})
         # Button to choose whether you want to add this df to wish list
-        every_df_book_to_DB = st.button("Add selected books to wish list")
-        if every_df_book_to_DB:
-            # Add books to DB by already created func
-            # After that, show your full df on a new page
+        add_selected_books_to_wish_list = st.button(
+            "Add selected books to wish list")
+        if add_selected_books_to_wish_list:
             engine = establish_connection()
-            add_books_to_wish_list(engine, indexes)
-            st.write("Added successfully")
+            try:
+                indexes.to_sql(name="wish_lists", if_exists='append',
+                               con=engine, index=False)
+                st.write("Added successfully")
+            except IntegrityError:
+                st.write("You're trying to add dublicates")
+                st.write("Trying to remove them...")
+                WL_ids = pd.read_sql(
+                    "select * from wish_lists;", con=engine, index_col="id")
+                WL_ids_list = WL_ids["book_id"].to_list()
+                input_ids_list = indexes["book_id"].to_list()
+                cleaned = [
+                    id for id in input_ids_list if id not in WL_ids_list]
+                st.write("Removal completed")
+                if len(cleaned) == 0:
+                    part_1 = "After dublicate removal"
+                    part_2 = "there's no ID to add"
+                    st.write(f"{part_1}, {part_2}")
+                else:
+                    st.write("Adding not present yet id(s) to wish list...")
+                    indexes = pd.DataFrame({"book_id": cleaned})
+                    indexes.to_sql(name="wish_lists", if_exists='append',
+                                   con=engine, index=False)
+                    st.write("Operation finished successfully")
