@@ -1,0 +1,14 @@
+.split {
+  height: 75%;
+  width: 50%;
+  position: fixed;
+  overflow-x: hidden;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
+}

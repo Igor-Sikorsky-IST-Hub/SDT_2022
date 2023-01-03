@@ -1,0 +1,36 @@
+<div class="container-fluid p-4 mt-2" id="main-history-container">
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <ng-container matColumnDef="index">
+      <th mat-header-cell *matHeaderCellDef> No.</th>
+      <td mat-cell *matCellDef="let element;let i = index;"> {{i}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-chip>{{element.action}}</mat-chip>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="history">
+      <th mat-header-cell *matHeaderCellDef> History</th>
+      <td mat-cell *matCellDef="let element"> {{element.history}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="executed">
+      <th mat-header-cell *matHeaderCellDef> When</th>
+      <td mat-cell *matCellDef="let element"> {{element.executed | date: 'short'}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+
+</div>

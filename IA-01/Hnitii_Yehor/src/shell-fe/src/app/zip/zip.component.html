@@ -1,0 +1,50 @@
+<div class="container-fluid p-4 mt-2" id="main-history-container">
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="checked">
+      <th mat-header-cell *matHeaderCellDef (click)="uncheckAll()">Check</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox [(ngModel)]="element.checked"></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="filename">
+      <th mat-header-cell *matHeaderCellDef>Filename</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-chip>{{element.filename}}</mat-chip>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="path">
+      <th mat-header-cell *matHeaderCellDef>Path</th>
+      <td mat-cell *matCellDef="let element" class="line-break"> {{element.path}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="createdDate">
+      <th mat-header-cell *matHeaderCellDef> Create date</th>
+      <td mat-cell *matCellDef="let element"> {{element.createdDate | date: 'short'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let element">
+        <button matRipple class="btn" (click)="download(element.id)">
+          <mat-icon>save_alt</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <div class="container-fluid text-center p-4" style="bottom: 0; position: fixed; left:0">
+    <button matRipple class="btn btn-danger m-2" (click)="deleteSelected()">
+      <mat-icon>delete</mat-icon>
+      Delete
+    </button>
+  </div>
+
+</div>
