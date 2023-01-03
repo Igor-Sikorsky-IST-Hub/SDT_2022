@@ -1,28 +1,31 @@
-package com.ia01.yhnitii.shell.filesystem.controller.dto;
+package com.ia01.yhnitii.shell.zip.controller.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import lombok.experimental.SuperBuilder;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 import static lombok.AccessLevel.PRIVATE;
 
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @FieldDefaults(level = PRIVATE)
-@SuperBuilder(toBuilder = true)
-public class FileDto {
+public class CachedZipDto {
+
+	UUID id;
+
+	String filename;
 
 	String path;
 
-	String title;
-
 	byte[] content;
 
-	@Builder.Default
-	boolean isFolder = false;
+	LocalDateTime createdDate;
 
 }

@@ -1,28 +1,25 @@
-package com.ia01.yhnitii.shell.filesystem.controller.dto;
+package com.ia01.yhnitii.shell.common.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import lombok.experimental.SuperBuilder;
+
+import javax.validation.constraints.NotEmpty;
+import java.util.Set;
+import java.util.UUID;
 
 import static lombok.AccessLevel.PRIVATE;
 
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @FieldDefaults(level = PRIVATE)
-@SuperBuilder(toBuilder = true)
-public class FileDto {
+public class IdsDto {
 
-	String path;
-
-	String title;
-
-	byte[] content;
-
-	@Builder.Default
-	boolean isFolder = false;
+	@NotEmpty
+	Set<UUID> ids;
 
 }

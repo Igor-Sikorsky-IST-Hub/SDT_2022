@@ -3,10 +3,13 @@ package com.ia01.yhnitii.shell.filesystem.controller.facade;
 import com.ia01.yhnitii.shell.filesystem.controller.dto.TransferDto;
 import com.ia01.yhnitii.shell.filesystem.controller.dto.FileDto;
 import com.ia01.yhnitii.shell.filesystem.controller.dto.PathsDto;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 public interface FileSystemFacade {
 
-	FileDto getFolder(String path);
+	List<FileDto> getFolder(String path);
 
 	void deleteByPaths(PathsDto pathsDto);
 
@@ -16,6 +19,10 @@ public interface FileSystemFacade {
 
 	FileDto download(String path);
 
-	FileDto createFolder(String path);
+	List<FileDto> createFolders(PathsDto path);
+
+	List<FileDto> findFiles(String path, String search);
+
+	void uploadFile(String path, MultipartFile file);
 
 }

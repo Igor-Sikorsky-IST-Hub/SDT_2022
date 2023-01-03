@@ -2,20 +2,26 @@ package com.ia01.yhnitii.shell.filesystem.service.impl;
 
 import com.ia01.yhnitii.shell.common.exception.BusinessException;
 import com.ia01.yhnitii.shell.filesystem.service.FileSystemService;
-import com.ia01.yhnitii.shell.filesystem.service.domain.FileState;
-import com.ia01.yhnitii.shell.filesystem.service.domain.StatedFile;
+import com.ia01.yhnitii.shell.filesystem.service.domain.FileZipState;
+import com.ia01.yhnitii.shell.filesystem.service.domain.StatedFileZip;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.util.StreamUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.stream.Stream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -27,7 +33,7 @@ import static lombok.AccessLevel.PRIVATE;
 @FieldDefaults(makeFinal = true, level = PRIVATE)
 public class FileSystemServiceImpl implements FileSystemService {
 
-	long MAX_DIRECTORY_BYTES_SIZE_TO_ZIP = 1_000_000_000L; // 1 GB
+	final static long MAX_DIRECTORY_BYTES_SIZE_TO_ZIP = 1_000_000_000L; // 1 GB
 
 	@Override
 	public File getFolder(String path) {
@@ -52,7 +58,12 @@ public class FileSystemServiceImpl implements FileSystemService {
 	@Override
 	public void copyFromTo(String path, String destinationPath) {
 		try {
-			FileSystemUtils.copyRecursively(Path.of(path), Path.of(destinationPath));
+			File src = new File(path);
+			File dest = new File(destinationPath + "/" + src.getName());
+			if (dest.exists()) {
+				throw new BusinessException(String.format(FILE_EXISTS, dest.getPath()));
+			}
+			FileSystemUtils.copyRecursively(src, dest);
 		} catch (IOException e) {
 			throw new BusinessException(String.format(COPY_FAILED, path, destinationPath));
 		}
@@ -75,7 +86,7 @@ public class FileSystemServiceImpl implements FileSystemService {
 
 	@Override
 	public byte[] getFolderZippedContent(String path) {
-		StatedFile statedFile = new StatedFile(path, FileState.States.ZIPPING_STARTED);
+		StatedFileZip statedFile = new StatedFileZip(path, FileZipState.States.ZIPPING_STARTED);
 
 		throwIfDirectorySizeHighForZip(statedFile);
 
@@ -103,6 +114,28 @@ public class FileSystemServiceImpl implements FileSystemService {
 		}
 
 		return folder;
+	}
+
+	@Override
+	public List<File> findFiles(String path, String search) {
+		try (Stream<Path> pathStream = Files.find(Paths.get(path), 6,
+				(x, y) -> StringUtils.containsIgnoreCase(x.getFileName().toString(), search.trim())
+		)) {
+			return pathStream.map(Path::toFile).toList();
+		} catch (IOException e) {
+			throw new BusinessException(String.format(SEARCH_FAILED, path));
+		}
+	}
+
+	@Override
+	public File addFile(String path, MultipartFile file) {
+		File newFile = new File(path + "/" + file.getOriginalFilename());
+		try {
+			file.transferTo(newFile);
+		} catch (IOException e) {
+			throw new BusinessException(UPLOAD_FAILED);
+		}
+		return newFile;
 	}
 
 	private void throwIfDirectorySizeHighForZip(File directory) {

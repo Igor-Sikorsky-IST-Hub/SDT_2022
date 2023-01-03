@@ -3,6 +3,11 @@ server:
 
 spring:
 
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
   profiles.active: @activatedProperties@
 
   liquibase:
@@ -12,7 +17,7 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
@@ -32,3 +37,6 @@ springdoc:
   swagger-ui:
     operationsSorter: method
     tagsSorter: alpha
+
+zip-cache:
+  live-time: 30

@@ -10,11 +10,12 @@
     </parent>
     <groupId>com.ia01.yhnitii</groupId>
     <artifactId>shell</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1</version>
     <name>shell</name>
     <description>shell</description>
     <properties>
         <java.version>17</java.version>
+        <spring-data-jpa-entity-graph.version>2.7.10</spring-data-jpa-entity-graph.version>
     </properties>
     <dependencies>
         <dependency>
@@ -59,7 +60,7 @@
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
-            <version>1.5.2.Final</version>
+            <version>1.5.3.Final</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -83,7 +84,7 @@
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
-            <version>RELEASE</version>
+            <version>1.6.12</version>
         </dependency>
 
     </dependencies>
@@ -131,8 +132,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.5.1</version>
                 <configuration>
-                    <source>16</source>
-                    <target>16</target>
+                    <source>17</source>
+                    <target>17</target>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>
