@@ -15,7 +15,6 @@ def establish_connection():
         pool_recycle=3600)
 
 
-# Check whether it's working
 def create_books_table(engine):
     metadata_obj = MetaData()
     books = Table(
@@ -36,7 +35,16 @@ def create_books_table(engine):
     metadata_obj.create_all(engine)
 
 
+# POSTPHONED TILL BETTER TIMES
 def create_wish_list_table(engine):
+    # metadata_obj = MetaData()
+    # wish_list = Table(
+    #     "wish_lists",
+    #     metadata_obj,
+    #     Column("id", Integer, primary_key=True, autoincrement=True),
+    #     Column("book_id", Integer, ForeignKey("books.id"), unique=True),
+    # )
+    # metadata_obj.create_all(engine)
     pass
 
 
@@ -78,6 +86,11 @@ def load_to_DB(engine, input_df):
         print("Table created")
         input_df.to_sql(name="books", if_exists='append',
                         con=engine, index=False)
+
+
+def add_books_to_wish_list(engine, input_df):
+    input_df.to_sql(name="wish_lists", if_exists='append',
+                    con=engine, index=False)
 
 
 def get_every_book_from_DB(engine):
