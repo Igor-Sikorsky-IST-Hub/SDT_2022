@@ -36,6 +36,10 @@ def create_books_table(engine):
     metadata_obj.create_all(engine)
 
 
+def create_wish_list_table(engine):
+    pass
+
+
 def load_to_DB(engine, input_df):
     try:
         all_info_from_db = pd.read_sql("select * from books;",
@@ -78,3 +82,12 @@ def load_to_DB(engine, input_df):
 
 def get_every_book_from_DB(engine):
     return pd.read_sql("select * from books;", con=engine, index_col="id")
+
+
+def get_every_book_from_wish_list(engine):
+    sql_string = ("SELECT books.id, books.title, books.description,"
+                  "books.author, books.rating, books.rating_count,"
+                  "books.reg_price, books.audio_len, books.language,"
+                  "books.page_URL, books.cover_image_URL FROM wish_lists"
+                  "\ninner join books on wish_lists.book_id = books.id;")
+    return pd.read_sql(sql_string, con=engine, index_col="id")
