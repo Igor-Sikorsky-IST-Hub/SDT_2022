@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 from scrape_page import show_scrape_page
 from all_books_page import show_all_books_page
 from wish_list_page import show_wish_list_page

@@ -1,16 +1,14 @@
 import streamlit as st
 
-
-from database_handling import establish_connection
-from database_handling import get_every_book_from_DB
+from database_handling import Database
 
 
 def show_detailed_book_info_page():
     st.write("### Here you can see more info about the book you chose")
     st.write("To see the info, we need your chosen book's ID")
 
-    engine = establish_connection()
-    df = get_every_book_from_DB(engine)
+    db = Database()
+    df = db.get_data_from_DB()
 
     book_id = st.text_input(label="Insert book's ID",
                             label_visibility="hidden",

@@ -2,13 +2,12 @@ import streamlit as st
 import pandas as pd
 from sqlalchemy.exc import IntegrityError
 
-from database_handling import establish_connection
-from database_handling import get_every_book_from_DB
+from database_handling import Database
 
 
 def show_all_books_page():
-    engine = establish_connection()
-    df = get_every_book_from_DB(engine)
+    db = Database()
+    df = db.get_data_from_DB()
     st.write("### Here are all your scraped books")
     # remove several not much useful cols
     # from your df before showing it
@@ -34,16 +33,15 @@ def show_all_books_page():
         add_selected_books_to_wish_list = st.button(
             "Add selected books to wish list")
         if add_selected_books_to_wish_list:
-            engine = establish_connection()
             try:
                 indexes.to_sql(name="wish_lists", if_exists='append',
-                               con=engine, index=False)
+                               con=db.engine, index=False)
                 st.write("Added successfully")
             except IntegrityError:
                 st.write("You're trying to add dublicates")
                 st.write("Trying to remove them...")
                 WL_ids = pd.read_sql(
-                    "select * from wish_lists;", con=engine, index_col="id")
+                    "select * from wish_lists;", con=db.engine, index_col="id")
                 WL_ids_list = WL_ids["book_id"].to_list()
                 input_ids_list = indexes["book_id"].to_list()
                 cleaned = [
@@ -57,5 +55,5 @@ def show_all_books_page():
                     st.write("Adding not present yet id(s) to wish list...")
                     indexes = pd.DataFrame({"book_id": cleaned})
                     indexes.to_sql(name="wish_lists", if_exists='append',
-                                   con=engine, index=False)
+                                   con=db.engine, index=False)
                     st.write("Operation finished successfully")
