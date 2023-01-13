@@ -1,0 +1,47 @@
+@startuml classDiag
+left to right direction
+
+class Book {
+    id: int
+    title: String
+    description: String
+    author: String
+    rating: String
+    rating_count: String
+    reg_price: String
+    audio_len: String
+    language: String
+    page_URL: String
+    image_URL: String
+    --
+    equals(Object)
+    hashcode()
+    getId()
+    getTitle()
+    getDescription()
+    getAuthor()
+    getRating()
+    getRatingCount()
+    getRegPrice()
+    getAudioLen()
+    getLanguage()
+    getPageURL()
+    getImageURL()
+}
+
+class WishList {
+    id: int
+    book: Book
+    wish_list: WishList
+    -- 
+    equals(Object)
+    hashcode()
+    getId()
+    getBook()
+}
+
+Book ..> WishList
+WishList ..> Book
+Book "1" *-- "1" WishList
+
+@enduml 

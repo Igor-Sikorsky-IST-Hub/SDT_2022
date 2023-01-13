@@ -1,0 +1,15 @@
+@startuml usecase
+
+left to right direction
+actor "User" as user
+
+user --> (Choose webpage for scraping)
+(Choose webpage for scraping) -|> (Start the scraping process)
+(Start the scraping process) -|> (Add scraped books to DB)
+user --> (See all books)
+(See all books) -|> (Add books to wish list)
+user --> (See wish list)
+user --> (Enter book ID)
+(Enter book ID) -|> (See detailed book info)
+
+@enduml

@@ -1,0 +1,15 @@
+@startuml deployment
+left to right direction
+
+node mysql {
+  database database
+}
+
+node scraper
+
+node web_app
+
+web_app -- scraper
+web_app -- mysql
+
+@enduml
