@@ -1,15 +1,16 @@
 @startuml deployment
 left to right direction
 
-node mysql {
-  database database
+node PC{
+
+interface web_interface
+component scraper
+database database
+
+scraper - web_interface
+database - scraper
+
 }
 
-node scraper
-
-node web_app
-
-web_app -- scraper
-web_app -- mysql
 
 @enduml
