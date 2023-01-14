@@ -7,9 +7,14 @@ from sqlalchemy.exc import ProgrammingError
 from env_vars import DB_USER, DB_PASSWORD
 
 
-class Database:
+class Database(object):
     def __init__(self):
         self.engine = self.establish_connection()
+
+    def __new__(cls):
+        if not hasattr(cls, 'instance'):
+            cls.instance = super(Database, cls).__new__(cls)
+        return cls.instance
 
     def establish_connection(self):
         DB_TO_WORK_WITH = "audible_books_db"
