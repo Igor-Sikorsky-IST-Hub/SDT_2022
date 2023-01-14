@@ -35,5 +35,5 @@ def show_scrape_page():
             # Add books to DB by already created func
             # After that, show your full df on a new page
             db = Database()
-            df = db.get_data_from_DB()
+            db.append_to_DB(df)
             st.write("Appended successfully")
