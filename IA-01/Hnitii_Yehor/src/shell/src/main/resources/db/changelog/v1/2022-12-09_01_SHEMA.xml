@@ -1,0 +1,27 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="create_history_table" author="Yehor Hnitii">
+
+        <sql>create type ACTION as enum ('COPY','TRANSFER','DELETE','NEW_FOLDER','NEW_FILE');</sql>
+
+        <createTable tableName="history">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="executed" type="timestamp" defaultValueDate="now()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="history" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="action" type="ACTION">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,46 @@
+version: "3"
+
+services:
+
+  terminal-db:
+    image: postgres:13.3
+    container_name: terminal-db
+    restart: always
+    ports:
+      - "5452:5432"
+    environment:
+      - POSTGRES_PASSWORD=2222
+      - POSTGRES_USER=terminal_db
+      - POSTGRES_DB=terminal_db
+    networks:
+      - main
+
+  terminal-backend:
+    ports:
+      - "8098:8098"
+    build:
+      context: ./src/shell
+      dockerfile: Dockerfile
+    environment:
+      - DB_URL=jdbc:postgresql://terminal-db:5432/terminal_db
+      - DATABASE_HOST=terminal-db
+      - DATABASE_NAME=terminal_db
+      - DATABASE_USER=terminal_db
+      - DATABASE_PASSWORD=2222
+    depends_on:
+      - terminal-db
+    networks:
+      - main
+  
+  terminal-frontend:
+    ports:
+      - "4200:80"
+    build:
+      context: ./src/shell-fe
+      dockerfile: Dockerfile
+    networks:
+      - main
+
+networks:
+  main:
+    driver: bridge

@@ -1,0 +1,31 @@
+<div class="p-4">
+  <div class="split left mat-drawer-container border">
+    <app-file-manager [isPrimary]="true" [destination]="path2" (pathEmitter)="setPath($event)"
+                      (reloadEmitter)="executeAction($event)" [action]="action"
+                      [path]="path1"></app-file-manager>
+  </div>
+
+  <div class="split right mat-drawer-container border">
+    <app-file-manager [isPrimary]="false" [destination]="path1" (reloadEmitter)="executeAction($event)"
+                      (pathEmitter)="setPath($event)" [action]="action"
+                      [path]="path2"></app-file-manager>
+  </div>
+
+  <div class="container-fluid text-center p-4" style="bottom: 0; position: fixed; left:0">
+    <button matRipple class="btn btn-primary m-2" (click)="executeAction('copy')">
+      <mat-icon>file_copy</mat-icon>
+      Copy
+    </button>
+    <button matRipple class="btn btn-primary m-2" (click)="swapItems()">
+      <mat-icon>swap_horiz</mat-icon>
+    </button>
+    <button matRipple class="btn btn-primary m-2" (click)="executeAction('transfer')">
+      <mat-icon>forward</mat-icon>
+      Transfer
+    </button>
+    <button matRipple class="btn btn-danger m-2" (click)="executeAction('delete')">
+      <mat-icon>delete</mat-icon>
+      Delete
+    </button>
+  </div>
+</div>
